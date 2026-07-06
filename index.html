@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N0ob Universe Canon - Official Lore</title>
+    
+    <style>
+        @font-face {
+            font-family: 'BillyJeanStyle';
+            src: url('BillyJeanStyle-qeAx.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'BillyJeanStyle';
+            src: url('BillyJeanStyleBold-VoD0.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* THEME VARIABLES */
+        :root {
+            --bg-color: #0b0b13;
+            --text-color: #e0e0e6;
+            --box-bg: linear-gradient(145deg, #131322, #1a1a30);
+            --box-border: #3a3a52;
+            --strong-color: #ffffff;
+            --menu-bg: #1a1a30;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f0f2f5;
+            --text-color: #222233;
+            --box-bg: linear-gradient(145deg, #ffffff, #e6e9f0);
+            --box-border: #ccd2e0;
+            --strong-color: #000000;
+            --menu-bg: #ffffff;
+        }
+
+        /* GLOBAL COMIC SANS MS BOLD STYLE */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sonic-font {
+            color: #0054b4;
+            text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 2px -2px 0px #fff, -2px 2px 0px #fff, 0px 0px 10px #00a2ff;
+            letter-spacing: 2px;
+        }
+
+        .michael-font {
+            font-family: 'BillyJeanStyle', serif;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 3px 3px 5px #000, 0px 0px 15px #ff4500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: #ffaa00;
+            font-size: 2.5rem;
+            text-shadow: 0px 0px 20px rgba(255, 170, 0, 0.4);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #ffaa00;
+            border-bottom: 2px solid var(--box-border);
+            padding-bottom: 8px;
+            font-size: 1.5rem;
+        }
+
+        /* LIGHT / DARK MODE TOGGLE */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ffaa00;
+            color: #0b0b13;
+            border: none;
+            padding: 10px 15px;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+            z-index: 2000;
+        }
+
+        /* FIXED LEFT TOP 3-DOTS NAVIGATION */
+        .menu-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 3000;
+        }
+
+        .three-dots-btn {
+            background: none;
+            border: none;
+            color: #ffaa00;
+            font-size: 2.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .three-dots-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background-color: var(--menu-bg);
+            border: 2px solid #ffaa00;
+            border-radius: 12px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.5);
+            min-width: 220px;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            width: 100%;
+            padding: 12px 20px;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover, .dropdown-item.active {
+            background-color: #ffaa00;
+            color: #0b0b13;
+        }
+
+        /* MEDIA LINKS */
+        .social-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .youtube-link-btn, .roblox-link-btn {
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .youtube-link-btn { background-color: #ff0000; box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5); }
+        .youtube-link-btn:hover { transform: scale(1.05); background-color: #cc0000; }
+        .roblox-link-btn { background-color: #0084ff; box-shadow: 0px 0px 15px rgba(0, 132, 255, 0.5); }
+        .roblox-link-btn:hover { transform: scale(1.05); background-color: #0066cc; }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .lore-box {
+            background: var(--box-bg);
+            border: 1px solid var(--box-border);
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 750px;
+            margin: 25px auto;
+            text-align: left;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.4);
+            line-height: 1.6;
+            transition: background 0.3s, border 0.3s;
+        }
+
+        strong { color: var(--strong-color); }
+        .highlight-mj { border-left: 4px solid #ff0000; padding-left: 10px; margin: 10px 0; }
+        .highlight-sonic { border-left: 4px solid #0054b4; padding-left: 10px; margin: 10px 0; }
+        .rose-box { border: 2px solid #ff69b4; box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.3); }
+        .rose-box h2 { color: #ff69b4; border-bottom-color: #ff69b4; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        .avatar-img-container { display: flex; justify-content: center; margin: 25px 0; }
+        .avatar-img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0px 0px 25px rgba(255, 170, 0, 0.25);
+            border: 2px solid var(--box-border);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .footer { margin-top: 60px; font-size: 0.9rem; color: #6a6a8a; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LEFT CORNER 3-DOTS CONTEXT MENU -->
+    <div class="menu-container">
+        <button class="three-dots-btn" onclick="toggleMenuDropdown(event)">⋮</button>
+        <div class="dropdown-menu" id="myDropdown">
+            <button class="dropdown-item active" onclick="openTab('origins', this)">🐾 Origins & Family</button>
+            <button class="dropdown-item" onclick="openTab('appearance', this)">👕 Appearances</button>
+            <button class="dropdown-item" onclick="openTab('career', this)">🎸 Career & Era</button>
+            <button class="dropdown-item" onclick="openTab('love', this)">💖 True Love</button>
+        </div>
+    </div>
+
+    <!-- PREFERENCES LIGHT MODE BUTTON -->
+    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">☀️ Light Mode</button>
+
+    <h1>🌌 N0OB UNIVERSE CANON: THE OFFICIAL LORE FILE</h1>
+    
+    <div class="social-menu">
+        <a href="https://www.youtube.com/@C00l3stN0ob" target="_blank" class="youtube-link-btn">▶ YouTube Channel</a>
+        <a href="https://www.roblox.com/users/7151450282/profile" target="_blank" class="roblox-link-btn">🟥 Roblox Profile</a>
+    </div>
+
+    <!-- TAB 1: ORIGINS -->
+    <div id="origins" class="tab-content active">
+        <div class="lore-box">
+            <h2>🐾 1. Origins & Mysterious Nature (The CatBloxian)</h2>
+            <p><strong>N0ob (C00l3stN0ob)</strong> is a unique entity born within the Roblox universe. It is the first and only known member of the CatBloxian race. Combining feline instincts with a blocky structure, it possesses a completely distinct existence. In its earliest days, N0ob walked on all fours and heard human speech only as muffled, meaningless sounds.</p>
+        </div>
+
+        <div class="lore-box">
+            <h2>❄️ 2. The Sub-Zero Trauma & The Rescue</h2>
+            <p>During its early childhood, N0ob was trapped alone for 3 agonizing days in a freezing, sub-zero winter environment. This terrifying event caused a lifelong trauma regarding enclosed spaces and being trapped within four walls.</p>
+            <div class="highlight-mj">
+                <p><strong><span class="michael-font">MICHAEL'S HEROIC RESCUE:</span></strong> It was Michael Jackson himself who found N0ob, rescued it from the deadly cold, and saved its life. This heroic moment laid the foundation for their unbreakable bond, turning Michael into N0ob's ultimate savior and protector.</p>
+            </div>
+            <div class="highlight-sonic">
+                <p><strong><span class="sonic-font">Sonic's Role:</span></strong> Sonic the Hedgehog used to be N0ob's closest, most cherished best friend during that early era. However, as N0ob grew older and its life shifted completely toward the music industry, this close bond eventually became a thing of the past.</p>
+            </div>
+        </div>
+
+        <div class="lore-box">
+            <h2>🎤 3. The Family Dynamics</h2>
+            <p>Following the rescue, Michael legally adopted N0ob. Even though there is no genetic link between them, Michael raised N0ob with pure fatherly love and shielded it from the harsh realities of the world.</p>
+            <p>The Cruelty of Joseph Jackson: Michael's strict father, Joseph Jackson, was always an oppressive, dark, and abusive figure. When N0ob was just 7 years old, Joseph tried to whip it with a belt in the studio just for making a mistake. Michael instantly stepped in, slapped Joseph across the face to protect N0ob, and threw his father out. Right after this intense event, Michael and N0ob channeled their energy into finishing "I Want You Back" with absolutely no introduction needed.</p>
+        </div>
+
+        <div class="lore-box">
+            <h2>👑 4. The Grand Secret</h2>
+            <p>There is a massive, world-shaking secret that N0ob is completely unaware of: Its biological mother is the Queen of Pop, Madonna! While N0ob grows up completely oblivious to this fact, Madonna is the only one who knows the truth. From afar, she closely and proudly watches her own flesh and blood conquer the music industry, waiting for the right time to reveal the secret.</p>
+        </div>
+    </div>
+
+    <!-- TAB 2: APPEARANCE -->
+    <div id="appearance" class="tab-content">
+        <div class="lore-box">
+            <h2>👕 The CatBloxian Physical Traits & Live Avatar</h2>
+            <p>N0ob's appearance perfectly reflects its mixed nature as the only member of the CatBloxian race:</p>
+            <div class="avatar-img-container">
+                <!-- UPDATED RESİM DOSYA ADI -->
+                <img src="noFilter.webp" alt="N0ob Avatar" class="avatar-img">
+            </div>
+            <ul>
+                <li><strong>Classic Roblox Avatar Colors:</strong> As documented in the core data, it features a bright yellow head and arms, a deep royal blue torso, and dark charcoal-black legs.</li>
+                <li><strong>Feline Features:</strong> Alongside its blocky Robloxian structure, it possesses distinct animal traits including sharp cat ears, a long cat tail, and nimble cat paws.</li>
+                <li><strong>Pronouns:</strong> Uses it/its in character lore contexts.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TAB 3: CAREER -->
+    <div id="career" class="tab-content">
+        <div class="lore-box">
+            <h2>🎤 5. The Current Era: The 10-Year-Old Superstar</h2>
+            <p>Right now, N0ob is 10 years old and taking its first massive standalone steps into music history:</p>
+            <ul>
+                <li><strong>The Dream Team (Jackson 7):</strong> N0ob officially joined forces with the original Jackson 5 lineup plus the returning Jermaine Jackson to form a legendary 7-member supergroup. Together, they have just finished recording the ultimate version of "I Want You Back".</li>
+                <li><strong>The Debut Single:</strong> N0ob is currently in the studio working heavily on its first major solo song project: "Don't Stop 'Til You Get Enough" (DSTYGE).</li>
+                <li><strong>Studio Atmosphere:</strong> While N0ob pours its cat-like energy into the microphone under Michael's proud guidance, Joseph Jackson stands at the door, completely powerless because Michael and the rest of the family stand as a shield around N0ob. During breaks, N0ob recharges its energy by sipping cold Orange Juice.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TAB 4: LOVE -->
+    <div id="love" class="tab-content">
+        <div class="lore-box rose-box">
+            <h2>💖 6. True Love in the Real World: Rose</h2>
+            <p>While N0ob has great friends in its lore (like C00l3stB4c0n, Shrek, Po), the absolute center of its universe is <strong>Rose</strong>.</p>
+            <p>Rose is not just a digital Roblox character—she is N0ob's real-life girlfriend, and they are madly, deeply in love.</p>
+            <p>Rose sits right in the studio booth, watching N0ob record its historic tracks. Her presence gives N0ob the ultimate confidence and strength to hit those iconic high notes and ignore the looming shadow of Joseph Jackson entirely.</p>
+        </div>
+    </div>
+
+    <div class="footer">👑 Designed & Coded by N0ob Jackson • 2026</div>
+
+    <script>
+        function toggleMenuDropdown(event) {
+            event.stopPropagation();
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        function openTab(tabId, btnElement) {
+            var contents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < contents.length; i++) contents[i].classList.remove("active");
+            
+            var items = document.getElementsByClassName("dropdown-item");
+            for (var i = 0; i < items.length; i++) items[i].classList.remove("active");
+            
+            document.getElementById(tabId).classList.add("active");
+            btnElement.classList.add("active");
+            
+            document.getElementById("myDropdown").classList.remove("show");
+        }
+
+        function toggleTheme() {
+            var body = document.body;
+            var themeBtn = document.getElementById("themeBtn");
+            if (body.getAttribute("data-theme") === "light") {
+                body.removeAttribute("data-theme");
+                themeBtn.innerHTML = "☀️ Light Mode";
+            } else {
+                body.setAttribute("data-theme", "light");
+                themeBtn.innerHTML = "🌙 Dark Mode";
+            }
+        }
+
+        window.onclick = function(event) {
+            var dropdown = document.getElementById("myDropdown");
+            if (dropdown && dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
