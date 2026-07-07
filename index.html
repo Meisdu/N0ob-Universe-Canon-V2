@@ -1,6 +1,74 @@
 
-        .three-dots-btn:hover {
-            transform: scale(1.05);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 N0ob Universe Canon | Official Lore</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+        /* 🎨 THEME VARIABLES */
+        :root {
+            --bg-gradient: radial-gradient(circle at center, #1b1b3a 0%, #080811 100%);
+            --card-bg: #232342;
+            --text-color: #ffffff;
+            --shadow-color: #000000;
+            --rose-bg: #421c3b;
+        }
+
+        [data-theme="light"] {
+            --bg-gradient: radial-gradient(circle at center, #e2e8f0 0%, #cbd5e1 100%);
+            --card-bg: #ffffff;
+            --text-color: #080811;
+            --shadow-color: rgba(0,0,0,0.3);
+            --rose-bg: #fff0f5;
+        }
+
+        /* 🌌 GLOBAL COMIC SANS MS BOLD STYLING */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Comic Sans', 'Fredoka One', cursive, sans-serif !important;
+            font-weight: 900 !important;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background: var(--bg-gradient) !important;
+            color: var(--text-color) !important;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 🔘 THREE-DOTS INTERACTIVE MENU */
+        .settings-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .three-dots-btn {
+            background: #ffaa00;
+            color: #000;
+            border: 4px solid #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0px #000;
+            outline: none;
         }
 
         .dropdown-menu {
@@ -98,7 +166,7 @@
         .youtube { background: #ff0000 !important; }
         .roblox { background: #0084ff !important; }
 
-        /* 🗂️ LORE GRID */
+        /* 🗂️ LORE GRID & FILTER ENGINE */
         .lore-grid {
             max-width: 850px;
             width: 100%;
@@ -114,6 +182,12 @@
             border-radius: 24px;
             padding: 35px;
             box-shadow: 8px 8px 0px var(--shadow-color);
+            display: block; /* Shown by default */
+        }
+
+        /* DYNAMIC SHOW/HIDE CLASSES */
+        .card.hidden {
+            display: none !important;
         }
 
         .card h2 {
@@ -131,29 +205,7 @@
             font-size: 1.2rem;
         }
 
-        /* 🔴 MJ BORDER */
-        .highlight-mj {
-            background: var(--mj-bg) !important;
-            border: 4px solid #ff0000 !important;
-            padding: 18px;
-            margin: 20px 0;
-            border-radius: 16px;
-            box-shadow: 4px 4px 0px #000;
-        }
-        .highlight-mj strong { color: #ff4500 !important; }
-
-        /* 🔵 SONIC BORDER */
-        .highlight-sonic {
-            background: var(--sonic-bg) !important;
-            border: 4px solid #0054b4 !important;
-            padding: 18px;
-            margin: 20px 0;
-            border-radius: 16px;
-            box-shadow: 4px 4px 0px #000;
-        }
-        .highlight-sonic strong { color: #00a2ff !important; }
-
-        /* 🐱 ROBLOX AVATAR */
+        /* 🐱 ROBLOX AVATAR SECTION */
         .avatar-section {
             display: flex;
             flex-direction: column;
@@ -223,12 +275,15 @@
 </head>
 <body>
 
-    <!-- 🔘 INTERACTIVE DROPDOWN CONTAINER -->
+    <!-- 🔘 INTERACTIVE CONTROL DROPDOWN -->
     <div class="settings-container">
         <button class="three-dots-btn" id="menuBtn">⋮</button>
         <div class="dropdown-menu" id="dropdownMenu">
+            <div class="menu-item" onclick="filterSection('all')">🌍 Show All Lore</div>
+            <div class="menu-item" onclick="filterSection('appearances')">👕 Appearances</div>
+            <div class="menu-item" onclick="filterSection('era')">🎤 Era</div>
+            <div class="menu-item" onclick="filterSection('love')">💖 True Love</div>
             <div class="menu-item" id="themeBtn">🌙 Dark / Light</div>
-            <div class="menu-item" onclick="alert('Avatar Features Changing: Switch to classic Roblox colors!')">👕 Appearances</div>
         </div>
     </div>
 
@@ -246,49 +301,15 @@
         <a href="https://www.roblox.com/users/7151450282/profile" target="_blank" class="social-link roblox">🟥 Roblox Profile</a>
     </div>
 
-    <!-- 🗂️ MASTER LORE FILE -->
+    <!-- 🗂️ MASTER LORE GRID WITH CUSTOM IDs FOR ENGINE -->
     <div class="lore-grid">
         
-        <!-- CARD 1 -->
-        <div class="card">
-            <h2>🐾 1. Origins & Mysterious Nature (The CatBloxian)</h2>
-            <p><strong>N0ob (C00l3stN0ob)</strong> is a unique entity born within the Roblox universe. It is the first and only known member of the CatBloxian race. Combining feline instincts with a blocky structure, it possesses a completely distinct existence.</p>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="card">
-            <h2>❄️ 2. The Sub-Zero Trauma & The Rescue</h2>
-            <p>During its early childhood, N0ob was trapped alone for 3 agonizing days in a freezing, sub-zero winter environment. This terrifying event caused a lifelong trauma regarding enclosed spaces and being trapped within four walls.</p>
-            
-            <div class="highlight-mj">
-                <p><strong>Michael's Heroic Rescue:</strong> It was Michael Jackson himself who found N0ob, rescued it from the deadly cold, and saved its life. This heroic moment laid the foundation for their unbreakable bond, turning Michael into N0ob's ultimate savior and protector.</p>
-            </div>
-            
-            <div class="highlight-sonic">
-                <p><strong>Sonic’s Role:</strong> Sonic the Hedgehog used to be N0ob's closest, most cherished best friend during that early era. However, as N0ob grew older and its life shifted completely toward the music industry, this close bond eventually became a thing of the past.</p>
-            </div>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="card">
-            <h2>🎤 3. The Family Dynamics: Michael Jackson</h2>
-            <p>Following the rescue, Michael legally adopted N0ob. Even though there is no genetic link between them, Michael raised N0ob with pure fatherly love and shielded it from the harsh realities of the world.</p>
-            <br>
-            <p><strong>The Cruelty of Joseph Jackson:</strong> Michael's strict father, Joseph Jackson, was always an oppressive, dark, and abusive figure. When N0ob was just 7 years old, Joseph tried to whip it with a belt in the studio just for making a mistake. Michael instantly stepped in, slapped Joseph across the face to protect N0ob, and threw his father out.</p>
-        </div>
-
-        <!-- CARD 4 -->
-        <div class="card">
-            <h2>👑 4. The Grand Secret: Biological Mother Madonna</h2>
-            <p>There is a massive, world-shaking secret that N0ob is completely unaware of: Its biological mother is the Queen of Pop, Madonna! While N0ob grows up completely oblivious to this fact, Madonna is the only one who knows the truth.</p>
-        </div>
-
-        <!-- CARD 5 (AVATAR PREVIEW) -->
-        <div class="card avatar-section">
+        <!-- APPEARANCES SECTION -->
+        <div class="card avatar-section" id="sec-appearances">
             <h2>👕 The CatBloxian Physical Traits & Live Avatar</h2>
             <p>N0ob's appearance perfectly reflects its mixed nature as the only member of the CatBloxian race:</p>
             
-            <div class="avatar-container">
+            <div class="avatar-container" style="margin: 25px 0;">
                 <img alt="N0ob Avatar" src="noFilter.webp" class="avatar-img">
             </div>
             
@@ -299,8 +320,8 @@
             </ul>
         </div>
 
-        <!-- CARD 6 -->
-        <div class="card">
+        <!-- ERA SECTION -->
+        <div class="card" id="sec-era">
             <h2>🎤 5. The Current Era: The 10-Year-Old Superstar</h2>
             <p>Right now, N0ob is 10 years old and taking its first massive standalone steps into music history:</p>
             <br>
@@ -309,8 +330,8 @@
             <p>💥 <strong>The Debut Single:</strong> N0ob is currently in the studio working heavily on its first major solo song project: "Don't Stop 'Til You Get Enough" (DSTYGE).</p>
         </div>
 
-        <!-- CARD 7 (ROSE) -->
-        <div class="card rose-card">
+        <!-- TRUE LOVE SECTION -->
+        <div class="card rose-card" id="sec-love">
             <h2>💖 6. True Love in the Real World: Rose</h2>
             <p>While N0ob has great friends in its lore (like C00l3stB4c0n, Shrek, Po, Master Shifu, and IShowSpeed), the absolute center of its universe is <strong>Rose</strong>.</p>
             <br>
@@ -319,29 +340,42 @@
 
     </div>
 
-    <!-- ENGINE DESIGN STAMP -->
+    <!-- FOOTER STAMP -->
     <div class="footer">
         👑 Designed & Coded by N0ob Jackson • 2026
     </div>
 
-    <!-- 🧠 JAVASCRIPT MECHANICS -->
+    <!-- 🧠 FILTER & THEMING MECHANICS -->
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const themeBtn = document.getElementById('themeBtn');
 
-        // Toggle dropdown menu display
+        // Toggle drop menu visibility
         menuBtn.addEventListener('click', (e) => {
             dropdownMenu.classList.toggle('show');
             e.stopPropagation();
         });
 
-        // Close menu if user clicks anywhere outside
         document.addEventListener('click', () => {
             dropdownMenu.classList.remove('show');
         });
 
-        // Toggle Dark / Light Theme Engine
+        // 🎯 TARGETED LORE DISPLAY FILTER ENGINE
+        function filterSection(sectionId) {
+            const sections = ['sec-appearances', 'sec-era', 'sec-love'];
+            
+            sections.forEach(id => {
+                const cardElement = document.getElementById(id);
+                if (sectionId === 'all' || id === 'sec-' + sectionId) {
+                    cardElement.classList.remove('hidden');
+                } else {
+                    cardElement.classList.add('hidden');
+                }
+            });
+        }
+
+        // Toggle Dark / Light Theme engine
         themeBtn.addEventListener('click', () => {
             const currentTheme = document.body.getAttribute('data-theme');
             if (currentTheme === 'light') {
