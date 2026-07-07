@@ -171,7 +171,7 @@
         .youtube { background: #ff0000 !important; }
         .roblox { background: #0084ff !important; }
 
-        /* 🗂️ LORE GRID (HIDDEN BY DEFAULT UNTIL CLICKED) */
+        /* 🗂️ LORE GRID */
         .lore-grid {
             max-width: 850px;
             width: 100%;
@@ -187,7 +187,7 @@
             border-radius: 24px;
             padding: 35px;
             box-shadow: 8px 8px 0px var(--shadow-color);
-            display: none; /* Everything starts hidden! */
+            display: none; /* Starts hidden */
         }
 
         .card h2 {
@@ -274,7 +274,7 @@
         }
 
         /* INFO PLACEHOLDER */
-        #placeholder-text {
+        .placeholder-text {
             font-size: 1.5rem;
             color: #ffaa00;
             text-align: center;
@@ -283,6 +283,7 @@
             border: 4px dashed #ffaa00;
             padding: 20px;
             border-radius: 16px;
+            display: block;
         }
 
         /* 👑 FOOTER */
@@ -334,13 +335,13 @@
     </div>
 
     <!-- DEFAULT PLACEHOLDER NOTICE -->
-    <div id="placeholder-text">✨ Click the three dots (⋮) in the top-right corner to open a section! ✨</div>
+    <div class="placeholder-text" id="placeholderMain">✨ Click the three dots (⋮) in the top-right corner to open a section! ✨</div>
 
     <!-- 🗂️ MASTER LORE GRID -->
     <div class="lore-grid">
         
-        <!-- 📖 GROUPED LORE CARDS -->
-        <div class="group-lore" style="display: none; flex-direction: column; gap: 40px;">
+        <!-- 📖 MASTER LORE BUNDLE (Origins, Trauma, Family, Madonna) -->
+        <div id="sec-lore" style="display: none; flex-direction: column; gap: 40px; width: 100%;">
             <div class="card" style="display: block;">
                 <h2>🐾 1. Origins & Mysterious Nature (The CatBloxian)</h2>
                 <p><strong>N0ob (C00l3stN0ob)</strong> is a unique entity born within the Roblox universe. It is the first and only known member of the CatBloxian race. Combining feline instincts with a blocky structure, it possesses a completely distinct existence.</p>
@@ -416,7 +417,7 @@
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const themeBtn = document.getElementById('themeBtn');
-        const placeholderText = document.getElementById('placeholder-text');
+        const placeholderMain = document.getElementById('placeholderMain');
 
         // Open/Close Dropdown Menu
         menuBtn.addEventListener('click', (e) => {
@@ -428,26 +429,26 @@
             dropdownMenu.classList.remove('show');
         });
 
-        // 🎯 DYNAMIC DISPLAYER: HIDES EVERYTHING ELSE, SHOWS ONLY TARGET
+        // 🎯 DYNAMIC DISPLAYER ENGINE
         function showSection(target) {
             // Hide placeholder text notice
-            placeholderText.style.display = 'none';
+            placeholderMain.style.display = 'none';
 
             // Get elements
-            const loreGroup = document.querySelector('.group-lore');
+            const loreBundle = document.getElementById('sec-lore');
             const appearances = document.getElementById('sec-appearances');
             const era = document.getElementById('sec-era');
             const love = document.getElementById('sec-love');
 
             // Hide absolutely everything first
-            loreGroup.style.display = 'none';
+            loreBundle.style.display = 'none';
             appearances.style.display = 'none';
             era.style.display = 'none';
             love.style.display = 'none';
 
             // Trigger display based on menu choice
             if (target === 'lore') {
-                loreGroup.style.display = 'flex';
+                loreBundle.style.display = 'flex';
             } else if (target === 'appearances') {
                 appearances.style.display = 'flex';
             } else if (target === 'era') {
