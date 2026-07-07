@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-        /* 🎨 DEĞİŞKENLER (DARK / LIGHT MODE İÇİN) */
+        /* 🎨 THEME VARIABLES (DARK / LIGHT MODE) */
         :root {
             --bg-gradient: radial-gradient(circle at center, #1b1b3a 0%, #080811 100%);
             --card-bg: #232342;
@@ -52,7 +52,7 @@
             position: relative;
         }
 
-        /* 🔘 ÜÇ NOKTA AYARLAR MENÜSÜ */
+        /* 🔘 THREE-DOTS SETTINGS MENU */
         .settings-container {
             position: fixed;
             top: 20px;
@@ -175,7 +175,7 @@
         .youtube { background: #ff0000 !important; }
         .roblox { background: #0084ff !important; }
 
-        /* 🗂️ CARTOON LORE GRID */
+        /* 🗂️ LORE GRID */
         .lore-grid {
             max-width: 850px;
             width: 100%;
@@ -300,37 +300,39 @@
 </head>
 <body>
 
-    <!-- 🔘 ÜÇ NOKTA AYARLAR MENÜSÜ -->
+    <!-- 🔘 INTERACTIVE DROPDOWN CONTAINER -->
     <div class="settings-container">
         <button class="three-dots-btn" id="menuBtn">⋮</button>
         <div class="dropdown-menu" id="dropdownMenu">
             <div class="menu-item" id="themeBtn">🌙 Dark / Light</div>
-            <div class="menu-item" onclick="alert('Avatar Traits: Yellow head/arms, Blue torso, Black legs!')">👕 Appearances</div>
+            <div class="menu-item" onclick="alert('Avatar Features Changing: Switch to classic Roblox colors!')">👕 Appearances</div>
         </div>
     </div>
 
-    <!-- 📱 MOBILE BANNER -->
+    <!-- 📱 MOBILE APP LINK -->
     <div class="mobile-banner">
         <a href="mobile.html" class="mobile-btn">📱 Open N0ob Universe Mobile App</a>
     </div>
 
-    <!-- 🌌 MAIN TITLE -->
+    <!-- 🌌 MAIN HEADER -->
     <h1>🌌 N0OB UNIVERSE CANON: THE OFFICIAL LORE FILE</h1>
     
-    <!-- 🌐 SOCIALS -->
+    <!-- 🌐 COMMUNITY BUTTONS -->
     <div class="social-container">
         <a href="https://www.youtube.com/@C00l3stN0ob" target="_blank" class="social-link youtube">▶ YouTube Channel</a>
         <a href="https://www.roblox.com/users/7151450282/profile" target="_blank" class="social-link roblox">🟥 Roblox Profile</a>
     </div>
 
-    <!-- 🗂️ LORE GRID -->
+    <!-- 🗂️ MASTER LORE FILE -->
     <div class="lore-grid">
         
+        <!-- CARD 1 -->
         <div class="card">
             <h2>🐾 1. Origins & Mysterious Nature (The CatBloxian)</h2>
             <p><strong>N0ob (C00l3stN0ob)</strong> is a unique entity born within the Roblox universe. It is the first and only known member of the CatBloxian race. Combining feline instincts with a blocky structure, it possesses a completely distinct existence.</p>
         </div>
 
+        <!-- CARD 2 -->
         <div class="card">
             <h2>❄️ 2. The Sub-Zero Trauma & The Rescue</h2>
             <p>During its early childhood, N0ob was trapped alone for 3 agonizing days in a freezing, sub-zero winter environment. This terrifying event caused a lifelong trauma regarding enclosed spaces and being trapped within four walls.</p>
@@ -344,6 +346,7 @@
             </div>
         </div>
 
+        <!-- CARD 3 -->
         <div class="card">
             <h2>🎤 3. The Family Dynamics: Michael Jackson</h2>
             <p>Following the rescue, Michael legally adopted N0ob. Even though there is no genetic link between them, Michael raised N0ob with pure fatherly love and shielded it from the harsh realities of the world.</p>
@@ -351,11 +354,13 @@
             <p><strong>The Cruelty of Joseph Jackson:</strong> Michael's strict father, Joseph Jackson, was always an oppressive, dark, and abusive figure. When N0ob was just 7 years old, Joseph tried to whip it with a belt in the studio just for making a mistake. Michael instantly stepped in, slapped Joseph across the face to protect N0ob, and threw his father out.</p>
         </div>
 
+        <!-- CARD 4 -->
         <div class="card">
             <h2>👑 4. The Grand Secret: Biological Mother Madonna</h2>
             <p>There is a massive, world-shaking secret that N0ob is completely unaware of: Its biological mother is the Queen of Pop, Madonna! While N0ob grows up completely oblivious to this fact, Madonna is the only one who knows the truth.</p>
         </div>
 
+        <!-- CARD 5 (AVATAR PREVIEW) -->
         <div class="card avatar-section">
             <h2>👕 The CatBloxian Physical Traits & Live Avatar</h2>
             <p>N0ob's appearance perfectly reflects its mixed nature as the only member of the CatBloxian race:</p>
@@ -371,6 +376,7 @@
             </ul>
         </div>
 
+        <!-- CARD 6 -->
         <div class="card">
             <h2>🎤 5. The Current Era: The 10-Year-Old Superstar</h2>
             <p>Right now, N0ob is 10 years old and taking its first massive standalone steps into music history:</p>
@@ -380,6 +386,7 @@
             <p>💥 <strong>The Debut Single:</strong> N0ob is currently in the studio working heavily on its first major solo song project: "Don't Stop 'Til You Get Enough" (DSTYGE).</p>
         </div>
 
+        <!-- CARD 7 (ROSE) -->
         <div class="card rose-card">
             <h2>💖 6. True Love in the Real World: Rose</h2>
             <p>While N0ob has great friends in its lore (like C00l3stB4c0n, Shrek, Po, Master Shifu, and IShowSpeed), the absolute center of its universe is <strong>Rose</strong>.</p>
@@ -389,7 +396,7 @@
 
     </div>
 
-    <!-- FOOTER -->
+    <!-- ENGINE DESIGN STAMP -->
     <div class="footer">
         👑 Designed & Coded by N0ob Jackson • 2026
     </div>
@@ -400,18 +407,18 @@
         const dropdownMenu = document.getElementById('dropdownMenu');
         const themeBtn = document.getElementById('themeBtn');
 
-        // Toggle dropdown menu
+        // Toggle dropdown menu display
         menuBtn.addEventListener('click', (e) => {
             dropdownMenu.classList.toggle('show');
             e.stopPropagation();
         });
 
-        // Close menu if clicked outside
+        // Close menu if user clicks anywhere outside
         document.addEventListener('click', () => {
             dropdownMenu.classList.remove('show');
         });
 
-        // Toggle Dark / Light Theme
+        // Toggle Dark / Light Theme Engine
         themeBtn.addEventListener('click', () => {
             const currentTheme = document.body.getAttribute('data-theme');
             if (currentTheme === 'light') {
