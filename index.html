@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,10 @@
             --bg-gradient: radial-gradient(circle at center, #1b1b3a 0%, #080811 100%);
             --card-bg: #232342;
             --text-color: #ffffff;
+            --border-color: #000000;
             --shadow-color: #000000;
+            --mj-bg: rgba(255, 0, 0, 0.2);
+            --sonic-bg: rgba(0, 84, 180, 0.25);
             --rose-bg: #421c3b;
         }
 
@@ -21,7 +23,10 @@
             --bg-gradient: radial-gradient(circle at center, #e2e8f0 0%, #cbd5e1 100%);
             --card-bg: #ffffff;
             --text-color: #080811;
+            --border-color: #000000;
             --shadow-color: rgba(0,0,0,0.3);
+            --mj-bg: rgba(255, 0, 0, 0.1);
+            --sonic-bg: rgba(0, 84, 180, 0.1);
             --rose-bg: #fff0f5;
         }
 
@@ -166,7 +171,7 @@
         .youtube { background: #ff0000 !important; }
         .roblox { background: #0084ff !important; }
 
-        /* 🗂️ LORE GRID & FILTER ENGINE */
+        /* 🗂️ LORE GRID (HIDDEN BY DEFAULT UNTIL CLICKED) */
         .lore-grid {
             max-width: 850px;
             width: 100%;
@@ -175,19 +180,14 @@
             gap: 40px;
         }
 
-        /* 📦 THICK OUTLINE CARTOON CARD */
+        /* 📦 CARTOON CARD STYLE */
         .card {
             background: var(--card-bg) !important;
             border: 5px solid #000000 !important;
             border-radius: 24px;
             padding: 35px;
             box-shadow: 8px 8px 0px var(--shadow-color);
-            display: block; /* Shown by default */
-        }
-
-        /* DYNAMIC SHOW/HIDE CLASSES */
-        .card.hidden {
-            display: none !important;
+            display: none; /* Everything starts hidden! */
         }
 
         .card h2 {
@@ -205,9 +205,29 @@
             font-size: 1.2rem;
         }
 
-        /* 🐱 ROBLOX AVATAR SECTION */
+        /* INTERNAL HIGHLIGHT BORDERS */
+        .highlight-mj {
+            background: var(--mj-bg) !important;
+            border: 4px solid #ff0000 !important;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 16px;
+            box-shadow: 4px 4px 0px #000;
+        }
+        .highlight-mj strong { color: #ff4500 !important; }
+
+        .highlight-sonic {
+            background: var(--sonic-bg) !important;
+            border: 4px solid #0054b4 !important;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 16px;
+            box-shadow: 4px 4px 0px #000;
+        }
+        .highlight-sonic strong { color: #00a2ff !important; }
+
+        /* 🐱 ROBLOX AVATAR STYLING */
         .avatar-section {
-            display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
@@ -253,6 +273,18 @@
             text-shadow: 3px 3px 0px #000;
         }
 
+        /* INFO PLACEHOLDER */
+        #placeholder-text {
+            font-size: 1.5rem;
+            color: #ffaa00;
+            text-align: center;
+            margin-top: 50px;
+            text-shadow: 2px 2px 0px #000;
+            border: 4px dashed #ffaa00;
+            padding: 20px;
+            border-radius: 16px;
+        }
+
         /* 👑 FOOTER */
         .footer {
             margin-top: 60px;
@@ -279,10 +311,10 @@
     <div class="settings-container">
         <button class="three-dots-btn" id="menuBtn">⋮</button>
         <div class="dropdown-menu" id="dropdownMenu">
-            <div class="menu-item" onclick="filterSection('all')">🌍 Show All Lore</div>
-            <div class="menu-item" onclick="filterSection('appearances')">👕 Appearances</div>
-            <div class="menu-item" onclick="filterSection('era')">🎤 Era</div>
-            <div class="menu-item" onclick="filterSection('love')">💖 True Love</div>
+            <div class="menu-item" onclick="showSection('lore')">📖 Lore</div>
+            <div class="menu-item" onclick="showSection('appearances')">👕 Appearances</div>
+            <div class="menu-item" onclick="showSection('era')">🎤 Era</div>
+            <div class="menu-item" onclick="showSection('love')">💖 True Love</div>
             <div class="menu-item" id="themeBtn">🌙 Dark / Light</div>
         </div>
     </div>
@@ -301,10 +333,44 @@
         <a href="https://www.roblox.com/users/7151450282/profile" target="_blank" class="social-link roblox">🟥 Roblox Profile</a>
     </div>
 
-    <!-- 🗂️ MASTER LORE GRID WITH CUSTOM IDs FOR ENGINE -->
+    <!-- DEFAULT PLACEHOLDER NOTICE -->
+    <div id="placeholder-text">✨ Click the three dots (⋮) in the top-right corner to open a section! ✨</div>
+
+    <!-- 🗂️ MASTER LORE GRID -->
     <div class="lore-grid">
         
-        <!-- APPEARANCES SECTION -->
+        <!-- 📖 GROUPED LORE CARDS -->
+        <div class="group-lore" style="display: none; flex-direction: column; gap: 40px;">
+            <div class="card" style="display: block;">
+                <h2>🐾 1. Origins & Mysterious Nature (The CatBloxian)</h2>
+                <p><strong>N0ob (C00l3stN0ob)</strong> is a unique entity born within the Roblox universe. It is the first and only known member of the CatBloxian race. Combining feline instincts with a blocky structure, it possesses a completely distinct existence.</p>
+            </div>
+
+            <div class="card" style="display: block;">
+                <h2>❄️ 2. The Sub-Zero Trauma & The Rescue</h2>
+                <p>During its early childhood, N0ob was trapped alone for 3 agonizing days in a freezing, sub-zero winter environment. This terrifying event caused a lifelong trauma regarding enclosed spaces and being trapped within four walls.</p>
+                <div class="highlight-mj">
+                    <p><strong>Michael's Heroic Rescue:</strong> It was Michael Jackson himself who found N0ob, rescued it from the deadly cold, and saved its life. This heroic moment laid the foundation for their unbreakable bond, turning Michael into N0ob's ultimate savior and protector.</p>
+                </div>
+                <div class="highlight-sonic">
+                    <p><strong>Sonic’s Role:</strong> Sonic the Hedgehog used to be N0ob's closest, most cherished best friend during that early era. However, as N0ob grew older and its life shifted completely toward the music industry, this close bond eventually became a thing of the past.</p>
+                </div>
+            </div>
+
+            <div class="card" style="display: block;">
+                <h2>🎤 3. The Family Dynamics: Michael Jackson</h2>
+                <p>Following the rescue, Michael legally adopted N0ob. Even though there is no genetic link between them, Michael raised N0ob with pure fatherly love and shielded it from the harsh realities of the world.</p>
+                <br>
+                <p><strong>The Cruelty of Joseph Jackson:</strong> Michael's strict father, Joseph Jackson, was always an oppressive, dark, and abusive figure. When N0ob was just 7 years old, Joseph tried to whip it with a belt in the studio just for making a mistake. Michael instantly stepped in, slapped Joseph across the face to protect N0ob, and threw his father out.</p>
+            </div>
+
+            <div class="card" style="display: block;">
+                <h2>👑 4. The Grand Secret: Biological Mother Madonna</h2>
+                <p>There is a massive, world-shaking secret that N0ob is completely unaware of: Its biological mother is the Queen of Pop, Madonna! While N0ob grows up completely oblivious to this fact, Madonna is the only one who knows the truth.</p>
+            </div>
+        </div>
+
+        <!-- 👕 APPEARANCES SECTION -->
         <div class="card avatar-section" id="sec-appearances">
             <h2>👕 The CatBloxian Physical Traits & Live Avatar</h2>
             <p>N0ob's appearance perfectly reflects its mixed nature as the only member of the CatBloxian race:</p>
@@ -320,7 +386,7 @@
             </ul>
         </div>
 
-        <!-- ERA SECTION -->
+        <!-- 🎤 ERA SECTION -->
         <div class="card" id="sec-era">
             <h2>🎤 5. The Current Era: The 10-Year-Old Superstar</h2>
             <p>Right now, N0ob is 10 years old and taking its first massive standalone steps into music history:</p>
@@ -330,7 +396,7 @@
             <p>💥 <strong>The Debut Single:</strong> N0ob is currently in the studio working heavily on its first major solo song project: "Don't Stop 'Til You Get Enough" (DSTYGE).</p>
         </div>
 
-        <!-- TRUE LOVE SECTION -->
+        <!-- 💖 TRUE LOVE SECTION -->
         <div class="card rose-card" id="sec-love">
             <h2>💖 6. True Love in the Real World: Rose</h2>
             <p>While N0ob has great friends in its lore (like C00l3stB4c0n, Shrek, Po, Master Shifu, and IShowSpeed), the absolute center of its universe is <strong>Rose</strong>.</p>
@@ -345,13 +411,14 @@
         👑 Designed & Coded by N0ob Jackson • 2026
     </div>
 
-    <!-- 🧠 FILTER & THEMING MECHANICS -->
+    <!-- 🧠 CORE NAVIGATION ENGINE -->
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const themeBtn = document.getElementById('themeBtn');
+        const placeholderText = document.getElementById('placeholder-text');
 
-        // Toggle drop menu visibility
+        // Open/Close Dropdown Menu
         menuBtn.addEventListener('click', (e) => {
             dropdownMenu.classList.toggle('show');
             e.stopPropagation();
@@ -361,21 +428,36 @@
             dropdownMenu.classList.remove('show');
         });
 
-        // 🎯 TARGETED LORE DISPLAY FILTER ENGINE
-        function filterSection(sectionId) {
-            const sections = ['sec-appearances', 'sec-era', 'sec-love'];
-            
-            sections.forEach(id => {
-                const cardElement = document.getElementById(id);
-                if (sectionId === 'all' || id === 'sec-' + sectionId) {
-                    cardElement.classList.remove('hidden');
-                } else {
-                    cardElement.classList.add('hidden');
-                }
-            });
+        // 🎯 DYNAMIC DISPLAYER: HIDES EVERYTHING ELSE, SHOWS ONLY TARGET
+        function showSection(target) {
+            // Hide placeholder text notice
+            placeholderText.style.display = 'none';
+
+            // Get elements
+            const loreGroup = document.querySelector('.group-lore');
+            const appearances = document.getElementById('sec-appearances');
+            const era = document.getElementById('sec-era');
+            const love = document.getElementById('sec-love');
+
+            // Hide absolutely everything first
+            loreGroup.style.display = 'none';
+            appearances.style.display = 'none';
+            era.style.display = 'none';
+            love.style.display = 'none';
+
+            // Trigger display based on menu choice
+            if (target === 'lore') {
+                loreGroup.style.display = 'flex';
+            } else if (target === 'appearances') {
+                appearances.style.display = 'flex';
+            } else if (target === 'era') {
+                era.style.display = 'block';
+            } else if (target === 'love') {
+                love.style.display = 'block';
+            }
         }
 
-        // Toggle Dark / Light Theme engine
+        // Dark / Light Theme engine switcher
         themeBtn.addEventListener('click', () => {
             const currentTheme = document.body.getAttribute('data-theme');
             if (currentTheme === 'light') {
