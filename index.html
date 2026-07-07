@@ -13,7 +13,7 @@
             --card-bg: #232342;
             --text-color: #ffffff;
             --border-color: #ffaa00; /* 🟡 GOLD OUTLINE */
-            --shadow-color: rgba(255, 170, 0, 0.4); /* 🟡 GOLD GLOW/SHADOW */
+            --shadow-color: rgba(255, 170, 0, 0.4); /* 🟡 GOLD SHADOW */
             --mj-bg: rgba(255, 0, 0, 0.2);
             --sonic-bg: rgba(0, 84, 180, 0.25);
             --rose-bg: #421c3b;
@@ -74,11 +74,6 @@
             justify-content: center;
             box-shadow: 4px 4px 0px #000;
             outline: none;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .three-dots-btn:hover {
-            transform: scale(1.15) rotate(90deg);
         }
 
         .dropdown-menu {
@@ -87,7 +82,7 @@
             top: 60px;
             right: 0;
             background: var(--card-bg);
-            border: 4px solid var(--border-color); /* Gold Outline */
+            border: 4px solid var(--border-color);
             border-radius: 16px;
             width: 220px;
             box-shadow: 6px 6px 0px var(--shadow-color);
@@ -96,7 +91,6 @@
 
         .dropdown-menu.show {
             display: block;
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .menu-item {
@@ -115,7 +109,6 @@
             background: #ffaa00;
             color: #000 !important;
             border-color: #000;
-            transform: scale(1.05);
         }
 
         /* 📱 MOBILE APPLICATION BUTTON */
@@ -206,7 +199,7 @@
             font-size: 1.2rem;
         }
 
-        /* INTERNAL BORDERS */
+        /* 🔊 AUDIO TRIGGERS DESIGN (CLICKABLE INTERACTIVE ZONES) */
         .highlight-mj {
             background: var(--mj-bg) !important;
             border: 4px solid #ff0000 !important;
@@ -214,6 +207,7 @@
             margin: 20px 0;
             border-radius: 16px;
             box-shadow: 4px 4px 0px #000;
+            cursor: pointer;
         }
         .highlight-mj strong { color: #ff4500 !important; }
 
@@ -224,6 +218,7 @@
             margin: 20px 0;
             border-radius: 16px;
             box-shadow: 4px 4px 0px #000;
+            cursor: pointer;
         }
         .highlight-sonic strong { color: #00a2ff !important; }
 
@@ -264,9 +259,10 @@
 
         /* 💖 ROSE CARD */
         .rose-card {
-            border: 5px solid #ff69b4 !important; /* Keep Rose special pink outline */
+            border: 5px solid #ff69b4 !important;
             background: var(--rose-bg) !important;
             box-shadow: 8px 8px 0px rgba(255, 105, 180, 0.4);
+            cursor: pointer; /* Clickable for audio */
         }
         .rose-card h2 {
             color: #ff69b4 !important;
@@ -285,24 +281,6 @@
             padding: 20px;
             border-radius: 16px;
             display: block;
-            animation: bounce 2s infinite ease-in-out;
-        }
-
-        /* 🎬 ANIMATION KEYFRAMES (CARTOON POP & BOUNCE) */
-        @keyframes popIn {
-            0% { transform: scale(0.6); opacity: 0; }
-            70% { transform: scale(1.08); opacity: 0.9; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* CLASS TO TRIGGER CARTOON POP ANIMATION VIA JS */
-        .animate-pop {
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
         }
 
         /* 👑 FOOTER */
@@ -325,7 +303,7 @@
         }
     </style>
 </head>
-<body>
+<body id="bodyGrid">
 
     <!-- 🔘 INTERACTIVE CONTROL DROPDOWN -->
     <div class="settings-container">
@@ -369,11 +347,15 @@
             <div class="card" style="display: block;">
                 <h2>❄️ 2. The Sub-Zero Trauma & The Rescue</h2>
                 <p>During its early childhood, N0ob was trapped alone for 3 agonizing days in a freezing, sub-zero winter environment. This terrifying event caused a lifelong trauma regarding enclosed spaces and being trapped within four walls.</p>
-                <div class="highlight-mj">
-                    <p><strong>Michael's Heroic Rescue:</strong> It was Michael Jackson himself who found N0ob, rescued it from the deadly cold, and saved its life. This heroic moment laid the foundation for their unbreakable bond, turning Michael into N0ob's ultimate savior and protector.</p>
+                
+                <!-- 🎵 MICHAEL JACKSON SOUND ZONE -->
+                <div class="highlight-mj" onclick="playSFX('mj', event)">
+                    <p><strong>🔊 Michael's Heroic Rescue (Click here!):</strong> It was Michael Jackson himself who found N0ob, rescued it from the deadly cold, and saved its life. This heroic moment laid the foundation for their unbreakable bond, turning Michael into N0ob's ultimate savior and protector.</p>
                 </div>
-                <div class="highlight-sonic">
-                    <p><strong>Sonic’s Role:</strong> Sonic the Hedgehog used to be N0ob's closest, most cherished best friend during that early era. However, as N0ob grew older and its life shifted completely toward the music industry, this close bond eventually became a thing of the past.</p>
+                
+                <!-- 🎵 SONIC THE HEDGEHOG SOUND ZONE -->
+                <div class="highlight-sonic" onclick="playSFX('sonic', event)">
+                    <p><strong>🔊 Sonic’s Role (Click here!):</strong> Sonic the Hedgehog used to be N0ob's closest, most cherished best friend during that early era. However, as N0ob grew older and its life shifted completely toward the music industry, this close bond eventually became a thing of the past.</p>
                 </div>
             </div>
 
@@ -416,9 +398,9 @@
             <p>💥 <strong>The Debut Single:</strong> N0ob is currently in the studio working heavily on its first major solo song project: "Don't Stop 'Til You Get Enough" (DSTYGE).</p>
         </div>
 
-        <!-- 💖 TRUE LOVE SECTION -->
-        <div class="card rose-card" id="sec-love">
-            <h2>💖 6. True Love in the Real World: Rose</h2>
+        <!-- 💖 TRUE LOVE SECTION (ROSE AUDIO ZONE) -->
+        <div class="card rose-card" id="sec-love" onclick="playSFX('rose', event)">
+            <h2>💖 6. True Love in the Real World: Rose (Click anywhere here!)</h2>
             <p>While N0ob has great friends in its lore (like C00l3stB4c0n, Shrek, Po, Master Shifu, and IShowSpeed), the absolute center of its universe is <strong>Rose</strong>.</p>
             <br>
             <p>Rose is not just a digital Roblox character—she is N0ob's real-life girlfriend, and they are madly, deeply in love.</p>
@@ -431,14 +413,46 @@
         👑 Designed & Coded by N0ob Jackson • 2026
     </div>
 
-    <!-- 🧠 CORE NAVIGATION ENGINE -->
-    <script {timestamp="2026"}>
+    <!-- 🧠 CORE SOUND & ENGINE SYSTEM -->
+    <script>
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const themeBtn = document.getElementById('themeBtn');
         const placeholderMain = document.getElementById('placeholderMain');
+        const bodyGrid = document.getElementById('bodyGrid');
 
-        // Open/Close Dropdown Menu
+        // 🎵 PRE-LOAD AUDIO SOUNDSETS
+        const sfxRoblox = new Audio('https://themes.roblox.com/sounds/uuhhh.mp3'); // Roblox Oof
+        const sfxMichael = new Audio('https://www.myinstants.com/media/sounds/hee-hee.mp3'); // Michael Hee-Hee
+        const sfxSonic = new Audio('https://www.myinstants.com/media/sounds/sonic-spindash.mp3'); // Sonic SpinDash
+        const sfxRose = new Audio('https://www.myinstants.com/media/sounds/anime-giggle.mp3'); // Anime Laugh/Giggle
+
+        // 💥 GLOBAL ROBLOX OOF TRIGGER FOR EMPTY SPACE
+        bodyGrid.addEventListener('click', (e) => {
+            // If the user clicks pure background or elements without custom audio, trigger Oof!
+            if (e.target.tagName === 'BODY' || e.target.id === 'bodyGrid' || e.target.classList.contains('lore-grid')) {
+                sfxRoblox.currentTime = 0;
+                sfxRoblox.play().catch(err => console.log("Audio alert:", err));
+            }
+        });
+
+        // 🎯 CUSTOM SFX ENGINE
+        function playSFX(type, event) {
+            event.stopPropagation(); // Stops the background Oof from playing at the same time!
+            
+            if (type === 'mj') {
+                sfxMichael.currentTime = 0;
+                sfxMichael.play().catch(e => console.log(e));
+            } else if (type === 'sonic') {
+                sfxSonic.currentTime = 0;
+                sfxSonic.play().catch(e => console.log(e));
+            } else if (type === 'rose') {
+                sfxRose.currentTime = 0;
+                sfxRose.play().catch(e => console.log(e));
+            }
+        }
+
+        // Dropdown Mechanics
         menuBtn.addEventListener('click', (e) => {
             dropdownMenu.classList.toggle('show');
             e.stopPropagation();
@@ -448,7 +462,7 @@
             dropdownMenu.classList.remove('show');
         });
 
-        // 🎯 DYNAMIC DISPLAYER ENGINE WITH POP ANIMATION
+        // SECTION DISPLAYER ENGINE
         function showSection(target) {
             placeholderMain.style.display = 'none';
 
@@ -457,35 +471,23 @@
             const era = document.getElementById('sec-era');
             const love = document.getElementById('sec-love');
 
-            // Hide and remove animation classes first
-            const allSections = [loreBundle, appearances, era, love];
-            allSections.forEach(sec => {
-                sec.style.display = 'none';
-                sec.classList.remove('animate-pop');
-                // If it's a bundle container, remove animation from children too
-                if(sec.id === 'sec-lore') {
-                    Array.from(sec.children).forEach(child => child.classList.remove('animate-pop'));
-                }
-            });
+            loreBundle.style.display = 'none';
+            appearances.style.display = 'none';
+            era.style.display = 'none';
+            love.style.display = 'none';
 
-            // Trigger display + animation based on menu choice
             if (target === 'lore') {
                 loreBundle.style.display = 'flex';
-                // Apply elastic pop to each internal card
-                Array.from(loreBundle.children).forEach(child => child.classList.add('animate-pop'));
             } else if (target === 'appearances') {
                 appearances.style.display = 'flex';
-                appearances.classList.add('animate-pop');
             } else if (target === 'era') {
                 era.style.display = 'block';
-                era.classList.add('animate-pop');
             } else if (target === 'love') {
                 love.style.display = 'block';
-                love.classList.add('animate-pop');
             }
         }
 
-        // Dark / Light Theme engine switcher
+        // Theme Switcher
         themeBtn.addEventListener('click', () => {
             const currentTheme = document.body.getAttribute('data-theme');
             if (currentTheme === 'light') {
