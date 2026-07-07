@@ -12,8 +12,8 @@
             --bg-gradient: radial-gradient(circle at center, #1b1b3a 0%, #080811 100%);
             --card-bg: #232342;
             --text-color: #ffffff;
-            --border-color: #000000;
-            --shadow-color: #000000;
+            --border-color: #ffaa00; /* 🟡 GOLD OUTLINE */
+            --shadow-color: rgba(255, 170, 0, 0.4); /* 🟡 GOLD GLOW/SHADOW */
             --mj-bg: rgba(255, 0, 0, 0.2);
             --sonic-bg: rgba(0, 84, 180, 0.25);
             --rose-bg: #421c3b;
@@ -23,8 +23,8 @@
             --bg-gradient: radial-gradient(circle at center, #e2e8f0 0%, #cbd5e1 100%);
             --card-bg: #ffffff;
             --text-color: #080811;
-            --border-color: #000000;
-            --shadow-color: rgba(0,0,0,0.3);
+            --border-color: #ffaa00;
+            --shadow-color: rgba(255, 170, 0, 0.3);
             --mj-bg: rgba(255, 0, 0, 0.1);
             --sonic-bg: rgba(0, 84, 180, 0.1);
             --rose-bg: #fff0f5;
@@ -74,6 +74,11 @@
             justify-content: center;
             box-shadow: 4px 4px 0px #000;
             outline: none;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .three-dots-btn:hover {
+            transform: scale(1.15) rotate(90deg);
         }
 
         .dropdown-menu {
@@ -82,16 +87,16 @@
             top: 60px;
             right: 0;
             background: var(--card-bg);
-            border: 4px solid #000;
+            border: 4px solid var(--border-color); /* Gold Outline */
             border-radius: 16px;
             width: 220px;
-            box-shadow: 6px 6px 0px #000;
+            box-shadow: 6px 6px 0px var(--shadow-color);
             padding: 10px;
         }
 
         .dropdown-menu.show {
             display: block;
-            animation: popIn 0.2s ease;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .menu-item {
@@ -110,11 +115,7 @@
             background: #ffaa00;
             color: #000 !important;
             border-color: #000;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            transform: scale(1.05);
         }
 
         /* 📱 MOBILE APPLICATION BUTTON */
@@ -133,7 +134,7 @@
             display: inline-block;
             text-transform: uppercase;
             border: 4px solid #000000;
-            box-shadow: 5px 5px 0px var(--shadow-color);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
         }
 
         /* 👑 MAIN TITLE */
@@ -165,7 +166,7 @@
             align-items: center;
             gap: 10px;
             border: 4px solid #000;
-            box-shadow: 5px 5px 0px var(--shadow-color);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
         }
 
         .youtube { background: #ff0000 !important; }
@@ -180,10 +181,10 @@
             gap: 40px;
         }
 
-        /* 📦 CARTOON CARD STYLE */
+        /* 📦 CARTOON CARD STYLE WITH GOLD OUTLINE */
         .card {
             background: var(--card-bg) !important;
-            border: 5px solid #000000 !important;
+            border: 5px solid var(--border-color) !important; /* 🟡 Gold Outline */
             border-radius: 24px;
             padding: 35px;
             box-shadow: 8px 8px 0px var(--shadow-color);
@@ -194,7 +195,7 @@
             color: #ffaa00 !important;
             font-size: 1.8rem;
             margin-bottom: 20px;
-            border-bottom: 4px dashed #000000;
+            border-bottom: 4px dashed var(--border-color);
             padding-bottom: 12px;
             text-shadow: 3px 3px 0px #000;
         }
@@ -205,7 +206,7 @@
             font-size: 1.2rem;
         }
 
-        /* INTERNAL HIGHLIGHT BORDERS */
+        /* INTERNAL BORDERS */
         .highlight-mj {
             background: var(--mj-bg) !important;
             border: 4px solid #ff0000 !important;
@@ -238,10 +239,10 @@
             width: 100%;
             height: auto;
             border-radius: 20px;
-            border: 5px solid #000000;
+            border: 5px solid var(--border-color);
             background: #0f0f1f;
             padding: 15px;
-            box-shadow: 8px 8px 0px #000;
+            box-shadow: 8px 8px 0px var(--shadow-color);
         }
 
         .traits-list {
@@ -254,7 +255,7 @@
 
         .traits-list li {
             padding: 14px 0;
-            border-bottom: 3px dashed #000000;
+            border-bottom: 3px dashed var(--border-color);
             display: flex;
             align-items: center;
             gap: 15px;
@@ -263,13 +264,13 @@
 
         /* 💖 ROSE CARD */
         .rose-card {
-            border: 5px solid #ff69b4 !important;
+            border: 5px solid #ff69b4 !important; /* Keep Rose special pink outline */
             background: var(--rose-bg) !important;
-            box-shadow: 8px 8px 0px var(--shadow-color);
+            box-shadow: 8px 8px 0px rgba(255, 105, 180, 0.4);
         }
         .rose-card h2 {
             color: #ff69b4 !important;
-            border-bottom-color: #000000;
+            border-bottom-color: #ff69b4;
             text-shadow: 3px 3px 0px #000;
         }
 
@@ -284,6 +285,24 @@
             padding: 20px;
             border-radius: 16px;
             display: block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        /* 🎬 ANIMATION KEYFRAMES (CARTOON POP & BOUNCE) */
+        @keyframes popIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            70% { transform: scale(1.08); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* CLASS TO TRIGGER CARTOON POP ANIMATION VIA JS */
+        .animate-pop {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
         }
 
         /* 👑 FOOTER */
@@ -292,7 +311,7 @@
             font-size: 1.3rem;
             color: #ffaa00 !important;
             text-align: center;
-            border-top: 4px dashed #000000;
+            border-top: 4px dashed var(--border-color);
             padding-top: 30px;
             width: 100%;
             max-width: 850px;
@@ -413,7 +432,7 @@
     </div>
 
     <!-- 🧠 CORE NAVIGATION ENGINE -->
-    <script>
+    <script {timestamp="2026"}>
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const themeBtn = document.getElementById('themeBtn');
@@ -429,32 +448,40 @@
             dropdownMenu.classList.remove('show');
         });
 
-        // 🎯 DYNAMIC DISPLAYER ENGINE
+        // 🎯 DYNAMIC DISPLAYER ENGINE WITH POP ANIMATION
         function showSection(target) {
-            // Hide placeholder text notice
             placeholderMain.style.display = 'none';
 
-            // Get elements
             const loreBundle = document.getElementById('sec-lore');
             const appearances = document.getElementById('sec-appearances');
             const era = document.getElementById('sec-era');
             const love = document.getElementById('sec-love');
 
-            // Hide absolutely everything first
-            loreBundle.style.display = 'none';
-            appearances.style.display = 'none';
-            era.style.display = 'none';
-            love.style.display = 'none';
+            // Hide and remove animation classes first
+            const allSections = [loreBundle, appearances, era, love];
+            allSections.forEach(sec => {
+                sec.style.display = 'none';
+                sec.classList.remove('animate-pop');
+                // If it's a bundle container, remove animation from children too
+                if(sec.id === 'sec-lore') {
+                    Array.from(sec.children).forEach(child => child.classList.remove('animate-pop'));
+                }
+            });
 
-            // Trigger display based on menu choice
+            // Trigger display + animation based on menu choice
             if (target === 'lore') {
                 loreBundle.style.display = 'flex';
+                // Apply elastic pop to each internal card
+                Array.from(loreBundle.children).forEach(child => child.classList.add('animate-pop'));
             } else if (target === 'appearances') {
                 appearances.style.display = 'flex';
+                appearances.classList.add('animate-pop');
             } else if (target === 'era') {
                 era.style.display = 'block';
+                era.classList.add('animate-pop');
             } else if (target === 'love') {
                 love.style.display = 'block';
+                love.classList.add('animate-pop');
             }
         }
 
